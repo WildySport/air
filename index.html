@@ -302,6 +302,7 @@
     <h1>What would an automated bagging machine save your operation?</h1>
     <p class="sub">Adjust the figures below to match your packing line and see the payback instantly — annual saving, labour hours freed, and the month the machine pays for itself.</p>
     <span class="privacy-note">Runs entirely in your browser — nothing is uploaded or stored.</span>
+    <span class="privacy-note"><a href="machines.html" style="color:inherit">Browse the AUTOBAG&reg; machine range &rarr;</a></span>
   </div>
 </header>
 
@@ -354,6 +355,7 @@
 
       <fieldset>
         <legend><span class="tag tag-auto" aria-hidden="true"></span>Proposed line — automated bagging</legend>
+        <p class="hint" id="presetNote" style="display:none;margin-bottom:.9rem"></p>
         <div class="field">
           <label for="n_autoSec">Operator seconds per order <span class="num" id="v_autoSec">8</span></label>
           <div class="control-row">
@@ -627,6 +629,26 @@
     $(id).addEventListener('input', recalc);
   });
   $('printBtn').addEventListener('click', function(){ window.print(); });
+
+  // machine presets via URL params (?autosec=6&price=38000&model=AUTOBAG%20550)
+  (function(){
+    var params = new URLSearchParams(location.search);
+    var pSec = parseFloat(params.get('autosec'));
+    if (!isNaN(pSec) && pSec >= 0){
+      $('n_autoSec').value = pSec;
+      var s = $('s_autoSec');
+      s.value = Math.min(Math.max(pSec, +s.min), +s.max);
+      $('v_autoSec').textContent = int0.format(pSec);
+    }
+    var pPrice = parseFloat(params.get('price'));
+    if (!isNaN(pPrice) && pPrice >= 0) $('n_machine').value = pPrice;
+    var model = params.get('model');
+    if (model){
+      var note = $('presetNote');
+      note.textContent = 'Preset for ' + model.slice(0, 60) + ' — adjust the operator pace and set the machine price from your quote.';
+      note.style.display = 'block';
+    }
+  })();
 
   recalc();
 })();

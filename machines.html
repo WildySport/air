@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="only light">
+<meta name="darkreader-lock">
+<title>The AUTOBAG&reg; Range — Automated Bagging Machines | Protective Packaging UK &amp; Ireland</title>
+<meta name="description" content="The current AUTOBAG® bagging machine range for UK & Ireland e-commerce and fulfilment operations — from tabletop baggers to the hybrid paper-and-poly 850HB.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme:only light;
+    --ink:#101C26;
+    --bg:#EDF1F0;
+    --panel:#FFFFFF;
+    --teal:#0B7C8A;
+    --teal-soft:#E3F0F2;
+    --kraft:#B98A3E;
+    --kraft-soft:#F4ECDD;
+    --line:#D5DCDA;
+    --muted:#5A6A70;
+    --radius:10px;
+    --font-display:'Space Grotesk',system-ui,sans-serif;
+    --font-body:'Inter',system-ui,sans-serif;
+    --font-mono:'IBM Plex Mono',ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{transition:none !important;animation:none !important}
+  }
+  body{
+    font-family:var(--font-body);
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .num{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+
+  header{
+    background:var(--ink);
+    color:#fff;
+    background-image:radial-gradient(circle at 3px 3px, rgba(255,255,255,.06) 2.5px, transparent 3px);
+    background-size:24px 24px;
+    padding:2.75rem 1.25rem 2.5rem;
+  }
+  .header-inner{max-width:1180px;margin:0 auto}
+  .eyebrow{
+    font-family:var(--font-display);
+    font-size:.78rem;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#8FB6BD;
+    margin-bottom:.75rem;
+  }
+  header h1{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(1.6rem, 3.5vw, 2.4rem);
+    line-height:1.15;
+    max-width:46rem;
+  }
+  header p.sub{
+    margin-top:.75rem;
+    color:#B9C6C9;
+    max-width:44rem;
+    font-size:.95rem;
+  }
+  .header-nav{margin-top:1.25rem}
+  .btn{
+    display:inline-block;
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:.9rem;
+    padding:.6rem 1.2rem;
+    border-radius:8px;
+    border:1px solid var(--teal);
+    background:var(--teal);
+    color:#fff;
+    cursor:pointer;
+    text-decoration:none;
+  }
+  .btn:hover{background:#0A6D79}
+  .btn.ghost{
+    background:transparent;
+    border-color:rgba(255,255,255,.35);
+  }
+  .btn.ghost:hover{background:rgba(255,255,255,.08)}
+  :is(a,button):focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+
+  main{max-width:1180px;margin:0 auto;padding:2rem 1.25rem 3rem}
+  .intro{
+    max-width:52rem;
+    font-size:.95rem;
+    color:var(--muted);
+    margin-bottom:2rem;
+  }
+  .intro strong{color:var(--ink)}
+
+  .machine{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:1.75rem;
+    margin-bottom:1.5rem;
+    display:grid;
+    grid-template-columns:minmax(300px,7fr) minmax(260px,5fr);
+    gap:2rem;
+  }
+  @media (max-width:860px){.machine{grid-template-columns:1fr;gap:1.25rem}}
+  .machine.featured{border:2px solid var(--teal)}
+
+  .chip{
+    display:inline-block;
+    font-family:var(--font-display);
+    font-size:.7rem;
+    font-weight:600;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    padding:.25rem .7rem;
+    border-radius:999px;
+    background:var(--teal-soft);
+    color:var(--teal);
+    margin-bottom:.75rem;
+  }
+  .chip.kraft{background:var(--kraft-soft);color:#8A6425}
+  .machine h2{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:1.5rem;
+    line-height:1.2;
+  }
+  .machine .position{
+    font-size:.95rem;
+    color:var(--muted);
+    margin:.5rem 0 1rem;
+    max-width:36rem;
+  }
+  .machine .pictogram{
+    float:right;
+    margin:0 0 .75rem 1rem;
+  }
+  .machine ul{
+    list-style:none;
+    margin:0 0 1.25rem;
+  }
+  .machine ul li{
+    font-size:.88rem;
+    padding-left:1.25rem;
+    position:relative;
+    margin-bottom:.45rem;
+  }
+  .machine ul li::before{
+    content:"";
+    position:absolute;
+    left:0;top:.5em;
+    width:.55em;height:.55em;
+    border-radius:2px;
+    background:var(--teal);
+  }
+  .best-for{
+    font-size:.88rem;
+    background:var(--bg);
+    border-radius:8px;
+    padding:.7rem .9rem;
+    margin-bottom:1.25rem;
+  }
+  .best-for strong{font-family:var(--font-display)}
+
+  .specs{align-self:start}
+  .throughput{
+    background:var(--ink);
+    color:#fff;
+    border-radius:var(--radius);
+    padding:1rem 1.25rem;
+    margin-bottom:1rem;
+    background-image:radial-gradient(circle at 3px 3px, rgba(255,255,255,.05) 2.5px, transparent 3px);
+    background-size:24px 24px;
+  }
+  .throughput .label{
+    font-family:var(--font-display);
+    font-size:.7rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:#8FB6BD;
+  }
+  .throughput .value{
+    font-family:var(--font-mono);
+    font-variant-numeric:tabular-nums;
+    font-weight:600;
+    font-size:1.75rem;
+    line-height:1.2;
+  }
+  .throughput .value small{
+    font-family:var(--font-display);
+    font-size:.5em;
+    font-weight:500;
+    color:#B9C6C9;
+  }
+  table.spec{
+    width:100%;
+    border-collapse:collapse;
+    font-size:.82rem;
+  }
+  table.spec th{
+    text-align:left;
+    font-weight:600;
+    color:var(--muted);
+    padding:.45rem .6rem .45rem 0;
+    vertical-align:top;
+    width:42%;
+    border-bottom:1px solid var(--line);
+  }
+  table.spec td{
+    font-family:var(--font-mono);
+    font-variant-numeric:tabular-nums;
+    font-size:.8rem;
+    padding:.45rem 0;
+    border-bottom:1px solid var(--line);
+    vertical-align:top;
+  }
+  table.spec tr:last-child :is(th,td){border-bottom:none}
+  .cta-row{margin-top:1rem;display:flex;gap:.75rem;flex-wrap:wrap}
+  .btn.solid-ink{background:var(--ink);border-color:var(--ink)}
+  .btn.solid-ink:hover{background:#1D3140}
+
+  footer{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 1.25rem 2.5rem;
+    font-size:.72rem;
+    color:var(--muted);
+    line-height:1.6;
+  }
+
+  @media print{
+    body{background:#fff}
+    header{-webkit-print-color-adjust:exact;print-color-adjust:exact;padding:1.25rem}
+    .header-nav,.cta-row{display:none !important}
+    .machine{break-inside:avoid;border-color:#bbb}
+    .throughput,.chip{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    main{padding:1rem 0}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <p class="eyebrow">Protective Packaging &middot; UK &amp; Ireland</p>
+    <h1>The AUTOBAG&reg; range: a machine for every stage of your operation</h1>
+    <p class="sub">From a tabletop bagger that replaces the first packing bench to a hybrid system running kerbside-recyclable paper mailers — six machines, one platform philosophy: fewer moving parts, faster changeovers, and print-and-pack in a single step.</p>
+    <nav class="header-nav">
+      <a class="btn" href="./">ROI calculator</a>
+      <a class="btn ghost" href="#m-850hb">Jump to the 850HB Hybrid</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <p class="intro">Every machine below is a current-production AUTOBAG&reg; system. Cycle speeds are the manufacturer's maximum cycling capability — real-world throughput on hand-load work is usually set by the operator, which is exactly what the <a href="./">ROI calculator</a> models. Use <strong>&ldquo;Model in calculator&rdquo;</strong> on any machine to preset a realistic operator pace, then drop in the machine price from your quote.</p>
+
+  <!-- ============ PS 125 ============ -->
+  <section class="machine" id="m-ps125">
+    <div>
+      <svg class="pictogram" width="72" height="72" viewBox="0 0 72 72" fill="none" aria-hidden="true">
+        <rect x="14" y="30" width="44" height="24" rx="3" stroke="#101C26" stroke-width="2.5"/>
+        <line x1="8" y1="60" x2="64" y2="60" stroke="#101C26" stroke-width="2.5"/>
+        <circle cx="36" cy="24" r="7" stroke="#0B7C8A" stroke-width="2.5"/>
+        <line x1="22" y1="42" x2="50" y2="42" stroke="#0B7C8A" stroke-width="2.5"/>
+      </svg>
+      <span class="chip">Tabletop &middot; Entry level</span>
+      <h2>AUTOBAG&reg; PS 125 &amp; PS 125 OneStep</h2>
+      <p class="position">The first step out of hand packing: a hand-load tabletop bagger and sealer that brings automatic bag indexing and consistent seals to low- and mid-volume lines — without needing a compressed-air supply.</p>
+      <ul>
+        <li>All-electric, quiet, and small enough for a packing bench (56 &times; 48 cm, 37 kg)</li>
+        <li>Locking turntable with AutoThread&trade; makes bag-roll changeover a one-person job</li>
+        <li>Seal by footswitch, Push-to-Seal&trade; or fully automatic cycle; job storage for quick recall</li>
+        <li>OneStep version adds a built-in imprinter with next-bag-out printing of graphics, text and barcodes</li>
+      </ul>
+      <p class="best-for"><strong>Best for:</strong> pharmacy and catalogue orders, kitting, and any operation packing a few hundred orders a day that isn't ready for a floor-standing machine.</p>
+      <div class="cta-row">
+        <a class="btn solid-ink" href="./?autosec=12&model=AUTOBAG%20PS%20125">Model in calculator</a>
+      </div>
+    </div>
+    <div class="specs">
+      <div class="throughput">
+        <p class="label">Cycle speed</p>
+        <p class="value">Up to 25 <small>bags/min &middot; 15 with OneStep printer</small></p>
+      </div>
+      <table class="spec">
+        <tr><th>Bag sizes</th><td>W 50&ndash;265 mm &times; L 100&ndash;430 mm</td></tr>
+        <tr><th>Pass-through</th><td>up to 86 mm</td></tr>
+        <tr><th>Footprint</th><td>56 &times; 48 cm tabletop</td></tr>
+        <tr><th>Weight</th><td>37 kg (OneStep 50 kg)</td></tr>
+        <tr><th>Air supply</th><td>None needed &mdash; all-electric</td></tr>
+        <tr><th>Printing</th><td>OneStep: built-in next-bag-out imprinter</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ 500 ============ -->
+  <section class="machine" id="m-500">
+    <div>
+      <svg class="pictogram" width="72" height="72" viewBox="0 0 72 72" fill="none" aria-hidden="true">
+        <rect x="18" y="18" width="36" height="42" rx="3" stroke="#101C26" stroke-width="2.5"/>
+        <circle cx="36" cy="12" r="6" stroke="#0B7C8A" stroke-width="2.5"/>
+        <line x1="26" y1="32" x2="46" y2="32" stroke="#0B7C8A" stroke-width="2.5"/>
+        <line x1="26" y1="42" x2="46" y2="42" stroke="#0B7C8A" stroke-width="2.5"/>
+      </svg>
+      <span class="chip">High-speed bagger &middot; Flagship</span>
+      <h2>AUTOBAG&reg; 500</h2>
+      <p class="position">The flagship bagger: an automatic filling and sealing machine cycling at over 100 bags per minute, engineered around uptime, safe hand-loading and a very small count of moving parts.</p>
+      <ul>
+        <li>Inherently safe design &mdash; no light curtains or double palm switches needed for hand-load work</li>
+        <li>Configurable left- or right-hand access to the HMI, cycle switch and bag loading area</li>
+        <li>AutoTouch&trade; screen with tutorials, diagnostics and live performance monitoring</li>
+        <li>Open design integrates with counters, scales, infeeds and conveyors; add AutoLabel 500P&trade; for a complete Print-and-Pack&trade; station</li>
+        <li>45&deg; tilt option for long or delicate products; casters and height adjustment as standard</li>
+      </ul>
+      <p class="best-for"><strong>Best for:</strong> high-volume packing of small to medium items where raw speed and uptime matter most — parts, accessories, single-SKU fulfilment.</p>
+      <div class="cta-row">
+        <a class="btn solid-ink" href="./?autosec=6&model=AUTOBAG%20500">Model in calculator</a>
+      </div>
+    </div>
+    <div class="specs">
+      <div class="throughput">
+        <p class="label">Cycle speed</p>
+        <p class="value">100+ <small>bags/min cycling capability</small></p>
+      </div>
+      <table class="spec">
+        <tr><th>Bag sizes</th><td>W 55&ndash;300 mm &times; L 70&ndash;550 mm</td></tr>
+        <tr><th>Pass-through</th><td>up to 125 mm</td></tr>
+        <tr><th>Footprint</th><td>955 &times; 1639 mm, H 943&ndash;1196 mm</td></tr>
+        <tr><th>Weight</th><td>158 kg</td></tr>
+        <tr><th>Bag thickness</th><td>35&ndash;100 &micro;m</td></tr>
+        <tr><th>Printing</th><td>Pair with AutoLabel 500P&trade; inline printer</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ 550 ============ -->
+  <section class="machine" id="m-550">
+    <div>
+      <svg class="pictogram" width="72" height="72" viewBox="0 0 72 72" fill="none" aria-hidden="true">
+        <rect x="18" y="18" width="36" height="42" rx="3" stroke="#101C26" stroke-width="2.5"/>
+        <circle cx="36" cy="12" r="6" stroke="#0B7C8A" stroke-width="2.5"/>
+        <rect x="26" y="28" width="20" height="12" rx="2" stroke="#0B7C8A" stroke-width="2.5"/>
+        <line x1="30" y1="48" x2="42" y2="48" stroke="#0B7C8A" stroke-width="2.5"/>
+      </svg>
+      <span class="chip">Bagger + printer &middot; E-commerce</span>
+      <h2>AUTOBAG&reg; 550</h2>
+      <p class="position">The 500 platform with a thermal-transfer imprinter positioned directly over the next bag to be loaded — the address or job data is printed on the very bag the operator fills next, so a separate labelling step disappears.</p>
+      <ul>
+        <li>Next-bag-out printing prevents product queuing and cuts label waste</li>
+        <li>Built for frequent product and label changeovers &mdash; short runs and build-on-demand</li>
+        <li>Ethernet-capable, integrates with third-party mail-order and e-commerce systems</li>
+        <li>Same safe hand-load design, AutoTouch&trade; screen and left/right configuration as the 500</li>
+      </ul>
+      <p class="best-for"><strong>Best for:</strong> multi-SKU e-commerce order fulfilment where every order is different and every bag needs its own print.</p>
+      <div class="cta-row">
+        <a class="btn solid-ink" href="./?autosec=6&model=AUTOBAG%20550">Model in calculator</a>
+      </div>
+    </div>
+    <div class="specs">
+      <div class="throughput">
+        <p class="label">Cycle speed</p>
+        <p class="value">Up to 45 <small>bags/min with printing</small></p>
+      </div>
+      <table class="spec">
+        <tr><th>Bag sizes</th><td>W 55&ndash;300 mm &times; L 130&ndash;550 mm</td></tr>
+        <tr><th>Pass-through</th><td>up to 125 mm</td></tr>
+        <tr><th>Footprint</th><td>955 &times; 1639 mm, H 943&ndash;1196 mm</td></tr>
+        <tr><th>Weight</th><td>176 kg</td></tr>
+        <tr><th>Bag thickness</th><td>35&ndash;100 &micro;m</td></tr>
+        <tr><th>Printing</th><td>Next-bag-out thermal transfer, built in</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ 600 Wide ============ -->
+  <section class="machine" id="m-600">
+    <div>
+      <svg class="pictogram" width="72" height="72" viewBox="0 0 72 72" fill="none" aria-hidden="true">
+        <rect x="10" y="20" width="52" height="40" rx="3" stroke="#101C26" stroke-width="2.5"/>
+        <circle cx="36" cy="13" r="6" stroke="#0B7C8A" stroke-width="2.5"/>
+        <line x1="18" y1="34" x2="54" y2="34" stroke="#0B7C8A" stroke-width="2.5"/>
+        <line x1="18" y1="46" x2="54" y2="46" stroke="#0B7C8A" stroke-width="2.5"/>
+      </svg>
+      <span class="chip">Wide bagger</span>
+      <h2>AUTOBAG&reg; 600 Wide</h2>
+      <p class="position">The same platform scaled up: a 400 mm-wide bag loading area and bags up to 680 mm long, cycling at over 65 bags per minute for large and bulk products.</p>
+      <ul>
+        <li>400 mm wide loading area suits apparel, multipacks, and bulky or awkward items</li>
+        <li>150 mm adjustable pass-through for thicker products</li>
+        <li>Add the AutoLabel 600P&trade; inline imprinter for a wide-format Print-and-Pack&trade; station</li>
+        <li>Same inherently safe hand-load design, AutoTouch&trade; HMI and servo-driven platform</li>
+        <li>A horizontal variant (600H) offers a large flat workspace for e-commerce fulfilment</li>
+      </ul>
+      <p class="best-for"><strong>Best for:</strong> operations whose products outgrew a standard bagger — clothing, homeware, larger accessories.</p>
+      <div class="cta-row">
+        <a class="btn solid-ink" href="./?autosec=7&model=AUTOBAG%20600%20Wide">Model in calculator</a>
+      </div>
+    </div>
+    <div class="specs">
+      <div class="throughput">
+        <p class="label">Cycle speed</p>
+        <p class="value">65+ <small>bags/min cycling capability</small></p>
+      </div>
+      <table class="spec">
+        <tr><th>Bag sizes</th><td>W 100&ndash;400 mm &times; L 140&ndash;680 mm</td></tr>
+        <tr><th>Pass-through</th><td>up to 150 mm</td></tr>
+        <tr><th>Footprint</th><td>1057 &times; 1765 mm, H 943&ndash;1196 mm</td></tr>
+        <tr><th>Weight</th><td>185 kg</td></tr>
+        <tr><th>Bag thickness</th><td>35&ndash;100 &micro;m</td></tr>
+        <tr><th>Printing</th><td>Pair with AutoLabel 600P&trade; inline printer</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ 650 ============ -->
+  <section class="machine" id="m-650">
+    <div>
+      <svg class="pictogram" width="72" height="72" viewBox="0 0 72 72" fill="none" aria-hidden="true">
+        <rect x="10" y="20" width="52" height="40" rx="3" stroke="#101C26" stroke-width="2.5"/>
+        <circle cx="36" cy="13" r="6" stroke="#0B7C8A" stroke-width="2.5"/>
+        <rect x="20" y="30" width="32" height="12" rx="2" stroke="#0B7C8A" stroke-width="2.5"/>
+        <line x1="26" y1="50" x2="46" y2="50" stroke="#0B7C8A" stroke-width="2.5"/>
+      </svg>
+      <span class="chip">Wide bagger + printer</span>
+      <h2>AUTOBAG&reg; 650</h2>
+      <p class="position">Wide-format bagging with next-bag-out printing: a thermal-transfer imprinter sits directly over the next large bag, so even 400 mm-wide packs come off the machine printed, filled and sealed in one pass.</p>
+      <ul>
+        <li>Next-bag-out printing on wide bags eliminates the separate labelling operation</li>
+        <li>Networkable for full pack-station integration and central monitoring</li>
+        <li>45&deg; tilt option orients long or delicate products; horizontal option adds a large workspace</li>
+        <li>SimpleCount&trade; counting system and infeed funnel options for kitting work</li>
+      </ul>
+      <p class="best-for"><strong>Best for:</strong> wide products that also need per-order print — printed apparel bags, mixed large-item fulfilment, short-run contract packing.</p>
+      <div class="cta-row">
+        <a class="btn solid-ink" href="./?autosec=8&model=AUTOBAG%20650">Model in calculator</a>
+      </div>
+    </div>
+    <div class="specs">
+      <div class="throughput">
+        <p class="label">Cycle speed</p>
+        <p class="value">Up to 40 <small>bags/min with printing</small></p>
+      </div>
+      <table class="spec">
+        <tr><th>Bag sizes</th><td>W 102&ndash;406 mm &times; L 140&ndash;559 mm<br>(914 mm long unsupported)</td></tr>
+        <tr><th>Pass-through</th><td>up to 152 mm</td></tr>
+        <tr><th>Footprint</th><td>1057 &times; 1765 mm, H 943&ndash;1196 mm</td></tr>
+        <tr><th>Weight</th><td>204 kg</td></tr>
+        <tr><th>Bag thickness</th><td>28&ndash;100 &micro;m</td></tr>
+        <tr><th>Printing</th><td>Next-bag-out thermal transfer, built in</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ 850HB ============ -->
+  <section class="machine featured" id="m-850hb">
+    <div>
+      <svg class="pictogram" width="72" height="72" viewBox="0 0 72 72" fill="none" aria-hidden="true">
+        <path d="M14 24h20v34H14a3 3 0 0 1-3-3V27a3 3 0 0 1 3-3Z" stroke="#0B7C8A" stroke-width="2.5"/>
+        <path d="M40 24h18a3 3 0 0 1 3 3v28a3 3 0 0 1-3 3H40V24Z" stroke="#B98A3E" stroke-width="2.5"/>
+        <line x1="44" y1="32" x2="57" y2="32" stroke="#B98A3E" stroke-width="2"/>
+        <line x1="44" y1="40" x2="57" y2="40" stroke="#B98A3E" stroke-width="2"/>
+        <line x1="44" y1="48" x2="57" y2="48" stroke="#B98A3E" stroke-width="2"/>
+        <circle cx="24" cy="16" r="5" stroke="#0B7C8A" stroke-width="2.5"/>
+      </svg>
+      <span class="chip kraft">Hybrid &middot; Paper + poly &middot; Newest</span>
+      <h2>AUTOBAG&reg; 850HB Hybrid</h2>
+      <p class="position">One machine, two materials: the 850HB runs standard poly bags <em>and</em> 100% kerbside-recyclable kraft paper mailers, with the shipping label printed straight onto the bag. It is the answer when customers ask for plastic-free packaging without giving up automation.</p>
+      <ul>
+        <li>Switch between poly and paper mailers on the same system &mdash; changeover in around two minutes</li>
+        <li>Inline next-bag-out label printing puts the despatch label on the bag, no separate print-and-stick step</li>
+        <li>Advanced grippers, auto-feeding and a seal flattener for consistent, wrinkle-free closures</li>
+        <li>Supports lighter-gauge film and right-sized bags to cut material use per order</li>
+        <li>Integrates with fulfilment software for semi- or fully-automated workflows</li>
+      </ul>
+      <p class="best-for"><strong>Best for:</strong> e-commerce and 3PL operations under pressure to offer recyclable paper packaging — or that want one machine covering both materials as demand shifts.</p>
+      <div class="cta-row">
+        <a class="btn" href="./?autosec=6&model=AUTOBAG%20850HB%20Hybrid">Model in calculator</a>
+      </div>
+    </div>
+    <div class="specs">
+      <div class="throughput">
+        <p class="label">Machine-paced speed</p>
+        <p class="value">Up to 10 <small>bags/min &asymp; 600 orders/hour</small></p>
+      </div>
+      <table class="spec">
+        <tr><th>Materials</th><td>Poly + kraft paper (kerbside recyclable)</td></tr>
+        <tr><th>Bag sizes</th><td>W 254&ndash;551 mm &times; L 254&ndash;899 mm</td></tr>
+        <tr><th>Paper mailers</th><td>Medium 356&times;508 mm &middot; Large 483&times;660 mm</td></tr>
+        <tr><th>Pass-through</th><td>up to 274 mm</td></tr>
+        <tr><th>Footprint</th><td>1151 &times; 1829 mm, H 1105&ndash;1410 mm</td></tr>
+        <tr><th>Weight</th><td>318 kg</td></tr>
+        <tr><th>Printing</th><td>Inline next-bag-out label printing</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <p class="intro" style="margin-top:2rem">Not sure which machine fits? Start with your daily order count in the <a href="./">ROI calculator</a> — the payback maths usually narrows it down to one or two candidates before a site assessment.</p>
+</main>
+
+<footer>
+  <p>AUTOBAG&reg;, AutoTouch&trade;, AutoLabel&trade;, Print-and-Pack&trade;, AutoThread&trade;, Push-to-Seal&trade; and SimpleCount&trade; are trademarks of Sealed Air Corporation, used here to identify the machines described. Specifications are summarised from published Sealed Air product information (August 2026) and converted to metric where applicable; they may change without notice. Confirm all specifications, compatibility and pricing with a formal quote and site assessment. This page is an independent sales aid and is not published by Sealed Air.</p>
+</footer>
+
+</body>
+</html>
