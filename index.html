@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Automated Bagging ROI Calculator — Protective Packaging UK &amp; Ireland</title>
+<meta name="description" content="Instant payback calculator: hand packing vs automated bagging. Indicative figures for UK & Ireland e-commerce and fulfilment operations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#101C26;
+    --bg:#EDF1F0;
+    --panel:#FFFFFF;
+    --teal:#0B7C8A;
+    --teal-soft:#E3F0F2;
+    --kraft:#B98A3E;
+    --kraft-soft:#F4ECDD;
+    --line:#D5DCDA;
+    --muted:#5A6A70;
+    --danger:#9C3A2E;
+    --radius:10px;
+    --font-display:'Space Grotesk',system-ui,sans-serif;
+    --font-body:'Inter',system-ui,sans-serif;
+    --font-mono:'IBM Plex Mono',ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{transition:none !important;animation:none !important}
+  }
+  body{
+    font-family:var(--font-body);
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .num{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+
+  /* ---------- Header ---------- */
+  header{
+    background:var(--ink);
+    color:#fff;
+    background-image:radial-gradient(circle at 3px 3px, rgba(255,255,255,.06) 2.5px, transparent 3px);
+    background-size:24px 24px;
+    padding:2.75rem 1.25rem 2.5rem;
+  }
+  .header-inner{max-width:1180px;margin:0 auto}
+  .eyebrow{
+    font-family:var(--font-display);
+    font-size:.78rem;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#8FB6BD;
+    margin-bottom:.75rem;
+  }
+  header h1{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(1.6rem, 3.5vw, 2.4rem);
+    line-height:1.15;
+    max-width:44rem;
+  }
+  header p.sub{
+    margin-top:.75rem;
+    color:#B9C6C9;
+    max-width:40rem;
+    font-size:.95rem;
+  }
+  .privacy-note{
+    display:inline-block;
+    margin-top:1rem;
+    font-size:.8rem;
+    color:#8FB6BD;
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:999px;
+    padding:.3rem .85rem;
+  }
+
+  /* ---------- Layout ---------- */
+  main{max-width:1180px;margin:0 auto;padding:2rem 1.25rem 3rem}
+  .layout{display:grid;grid-template-columns:minmax(320px,5fr) minmax(340px,7fr);gap:1.5rem;align-items:start}
+  @media (max-width: 920px){
+    .layout{grid-template-columns:1fr}
+    .results{position:static}
+  }
+
+  /* ---------- Inputs ---------- */
+  fieldset{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:1.25rem 1.25rem 1rem;
+    margin-bottom:1.25rem;
+  }
+  legend{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:1rem;
+    padding:0 .5rem;
+    margin-left:-.5rem;
+  }
+  legend .tag{
+    display:inline-block;
+    width:.65em;height:.65em;
+    border-radius:2px;
+    margin-right:.45em;
+  }
+  .tag-manual{background:var(--kraft)}
+  .tag-auto{background:var(--teal)}
+  .field{margin-bottom:1.1rem}
+  .field:last-child{margin-bottom:.35rem}
+  .field label{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:.75rem;
+    font-size:.88rem;
+    font-weight:500;
+    margin-bottom:.4rem;
+  }
+  .field .hint{
+    font-size:.75rem;
+    color:var(--muted);
+    font-weight:400;
+    margin-top:.3rem;
+  }
+  .control-row{display:flex;gap:.9rem;align-items:center}
+  input[type=range]{
+    flex:1;
+    accent-color:var(--teal);
+    height:1.4rem;
+    cursor:pointer;
+  }
+  input[type=number]{
+    width:6.2rem;
+    font-family:var(--font-mono);
+    font-variant-numeric:tabular-nums;
+    font-size:.9rem;
+    padding:.45rem .55rem;
+    border:1px solid var(--line);
+    border-radius:6px;
+    background:#FBFCFC;
+    color:var(--ink);
+  }
+  input[type=number].wide{width:8rem}
+  :is(input,button):focus-visible{
+    outline:3px solid var(--teal);
+    outline-offset:2px;
+  }
+
+  /* ---------- Results ---------- */
+  .results{position:sticky;top:1.25rem}
+  .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:1.25rem;
+  }
+  .hero-card{
+    background:var(--ink);
+    color:#fff;
+    border:none;
+    background-image:radial-gradient(circle at 3px 3px, rgba(255,255,255,.05) 2.5px, transparent 3px);
+    background-size:24px 24px;
+    margin-bottom:1rem;
+  }
+  .hero-card .label{
+    font-family:var(--font-display);
+    font-size:.8rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:#8FB6BD;
+    margin-bottom:.4rem;
+  }
+  .hero-card .value{
+    font-family:var(--font-mono);
+    font-variant-numeric:tabular-nums;
+    font-weight:600;
+    font-size:clamp(2rem, 5vw, 3rem);
+    line-height:1.1;
+  }
+  .hero-card .value small{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:.45em;
+    color:#B9C6C9;
+    margin-left:.35rem;
+  }
+  .warning-card{
+    background:#FBEFEA;
+    border:1px solid #E3C3B9;
+    color:var(--danger);
+    border-radius:var(--radius);
+    padding:1.1rem 1.25rem;
+    font-size:.9rem;
+    margin-bottom:1rem;
+    display:none;
+  }
+  .warning-card strong{display:block;margin-bottom:.3rem;font-family:var(--font-display)}
+  .stat-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:.75rem;
+    margin-bottom:1rem;
+  }
+  @media (max-width:560px){.stat-grid{grid-template-columns:1fr}}
+  .stat{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:.9rem 1rem;
+  }
+  .stat .label{font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .stat .value{
+    font-family:var(--font-mono);
+    font-variant-numeric:tabular-nums;
+    font-weight:600;
+    font-size:1.25rem;
+    margin-top:.25rem;
+  }
+  .stat .value.neg{color:var(--danger)}
+
+  .chart-card{margin-bottom:1rem}
+  .chart-card h2, .bars-card h2{
+    font-family:var(--font-display);
+    font-size:1rem;
+    font-weight:600;
+    margin-bottom:.25rem;
+  }
+  .chart-card .sub, .bars-card .sub{font-size:.8rem;color:var(--muted);margin-bottom:.75rem}
+  .legend{display:flex;gap:1.25rem;flex-wrap:wrap;font-size:.78rem;margin-bottom:.5rem}
+  .legend span{display:inline-flex;align-items:center;gap:.4rem}
+  .legend i{width:1.1rem;height:3px;border-radius:2px;display:inline-block}
+  .legend .l-manual i{background:var(--kraft)}
+  .legend .l-auto i{background:var(--teal)}
+  svg{display:block;width:100%;height:auto}
+
+  .bars-card{margin-bottom:1rem}
+  .bar-row{margin-bottom:.8rem}
+  .bar-row:last-child{margin-bottom:.2rem}
+  .bar-row .bar-label{
+    display:flex;justify-content:space-between;
+    font-size:.82rem;font-weight:500;margin-bottom:.3rem;
+  }
+  .bar-track{background:var(--bg);border-radius:5px;height:1.35rem;overflow:hidden}
+  .bar-fill{height:100%;border-radius:5px;transition:width .25s ease}
+  .bar-manual{background:var(--kraft)}
+  .bar-auto{background:var(--teal)}
+
+  .actions{display:flex;gap:.75rem;margin-bottom:1rem}
+  .btn{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:.9rem;
+    padding:.65rem 1.25rem;
+    border-radius:8px;
+    border:1px solid var(--ink);
+    background:var(--ink);
+    color:#fff;
+    cursor:pointer;
+  }
+  .btn:hover{background:#1D3140}
+  .disclaimer{
+    font-size:.72rem;
+    color:var(--muted);
+    line-height:1.55;
+  }
+
+  footer{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 1.25rem 2.5rem;
+    font-size:.75rem;
+    color:var(--muted);
+  }
+
+  /* ---------- Print ---------- */
+  @media print{
+    body{background:#fff}
+    header{background:var(--ink) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;padding:1.25rem}
+    .layout{grid-template-columns:1fr 1fr;gap:1rem}
+    input[type=range], .actions, .privacy-note{display:none !important}
+    .results{position:static}
+    fieldset,.card,.stat{border-color:#bbb;break-inside:avoid}
+    .bar-fill,.hero-card,.tag-manual,.tag-auto{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    main{padding:1rem 0}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <p class="eyebrow">Protective Packaging &middot; UK &amp; Ireland</p>
+    <h1>What would an automated bagging machine save your operation?</h1>
+    <p class="sub">Adjust the figures below to match your packing line and see the payback instantly — annual saving, labour hours freed, and the month the machine pays for itself.</p>
+    <span class="privacy-note">Runs entirely in your browser — nothing is uploaded or stored.</span>
+  </div>
+</header>
+
+<main>
+  <div class="layout">
+
+    <!-- ================= INPUTS ================= -->
+    <form id="calc" autocomplete="off">
+
+      <fieldset>
+        <legend>Order volume</legend>
+        <div class="field">
+          <label for="n_orders">Orders packed per day <span class="num" id="v_orders">2,000</span></label>
+          <div class="control-row">
+            <input type="range" id="s_orders" min="100" max="10000" step="50" value="2000" aria-label="Orders packed per day (slider)">
+            <input type="number" id="n_orders" min="100" max="10000" step="50" value="2000">
+          </div>
+        </div>
+        <div class="field">
+          <label for="n_days">Working days per year</label>
+          <div class="control-row">
+            <input type="number" id="n_days" min="1" max="365" step="1" value="250">
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="tag tag-manual" aria-hidden="true"></span>Current line — hand packing</legend>
+        <div class="field">
+          <label for="n_manSec">Seconds per order <span class="num" id="v_manSec">45</span></label>
+          <div class="control-row">
+            <input type="range" id="s_manSec" min="10" max="180" step="1" value="45" aria-label="Hand packing seconds per order (slider)">
+            <input type="number" id="n_manSec" min="10" max="180" step="1" value="45">
+          </div>
+        </div>
+        <div class="field">
+          <label for="n_rate">Loaded labour cost (&pound;/hour)</label>
+          <div class="control-row">
+            <input type="number" id="n_rate" min="0" step="0.5" value="15">
+          </div>
+          <p class="hint">Wage plus employer NI, pension and holiday. UK packers are typically &pound;14&ndash;16 all-in.</p>
+        </div>
+        <div class="field">
+          <label for="n_manMat">Material cost per order (&pound;)</label>
+          <div class="control-row">
+            <input type="number" id="n_manMat" min="0" step="0.01" value="0.11">
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="tag tag-auto" aria-hidden="true"></span>Proposed line — automated bagging</legend>
+        <div class="field">
+          <label for="n_autoSec">Operator seconds per order <span class="num" id="v_autoSec">8</span></label>
+          <div class="control-row">
+            <input type="range" id="s_autoSec" min="2" max="60" step="1" value="8" aria-label="Automated line operator seconds per order (slider)">
+            <input type="number" id="n_autoSec" min="2" max="60" step="1" value="8">
+          </div>
+          <p class="hint">A hybrid bagger at ~700 orders/hour with one operator is roughly 5 seconds per order.</p>
+        </div>
+        <div class="field">
+          <label for="n_autoMat">Bag-on-roll material per order (&pound;)</label>
+          <div class="control-row">
+            <input type="number" id="n_autoMat" min="0" step="0.01" value="0.09">
+          </div>
+        </div>
+        <div class="field">
+          <label for="n_machine">Machine price (&pound;)</label>
+          <div class="control-row">
+            <input type="number" id="n_machine" class="wide" min="0" step="500" value="38000">
+          </div>
+        </div>
+        <div class="field">
+          <label for="n_service">Annual service (&pound;)</label>
+          <div class="control-row">
+            <input type="number" id="n_service" class="wide" min="0" step="100" value="1800">
+          </div>
+        </div>
+      </fieldset>
+
+    </form>
+
+    <!-- ================= RESULTS ================= -->
+    <div class="results" aria-live="polite">
+
+      <div class="hero-card card" id="heroCard">
+        <p class="label">Payback</p>
+        <p class="value"><span id="heroValue">—</span></p>
+      </div>
+
+      <div class="warning-card" id="warnCard" role="status">
+        <strong>No saving with these inputs yet</strong>
+        With the current figures the automated line costs more per year than hand packing, so there is no payback to show. Check the hand-pack seconds per order and labour rate reflect your real line, or reduce the automated material cost, machine price or annual service to match your quote.
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat">
+          <p class="label">Net saving / year</p>
+          <p class="value" id="statSaving">—</p>
+        </div>
+        <div class="stat">
+          <p class="label">Labour hours freed / year</p>
+          <p class="value" id="statHours">—</p>
+        </div>
+        <div class="stat">
+          <p class="label">3-year net benefit</p>
+          <p class="value" id="statThreeYr">—</p>
+        </div>
+      </div>
+
+      <div class="card chart-card">
+        <h2>Cumulative cost over 36 months</h2>
+        <p class="sub">Hand packing from &pound;0 vs automated line starting at the machine price.</p>
+        <div class="legend">
+          <span class="l-manual"><i></i>Hand packing</span>
+          <span class="l-auto"><i></i>Automated bagging</span>
+        </div>
+        <svg id="chart" viewBox="0 0 660 380" role="img" aria-label="Line chart of cumulative cost over 36 months for hand packing versus automated bagging, showing the break-even point"></svg>
+      </div>
+
+      <div class="card bars-card">
+        <h2>Cost per order</h2>
+        <p class="sub">Labour plus material, per order packed.</p>
+        <div class="bar-row">
+          <div class="bar-label"><span>Hand packing</span><span class="num" id="barManVal">—</span></div>
+          <div class="bar-track"><div class="bar-fill bar-manual" id="barMan" style="width:100%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label"><span>Automated bagging</span><span class="num" id="barAutoVal">—</span></div>
+          <div class="bar-track"><div class="bar-fill bar-auto" id="barAuto" style="width:40%"></div></div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn" id="printBtn">Print / save as PDF</button>
+      </div>
+
+      <p class="disclaimer">Indicative figures only, based on the inputs entered above. Excludes VAT, floorspace, energy and finance costs. Machine throughput, material prices and service terms vary by model and volume — please confirm with a formal quote and site assessment before making a purchasing decision.</p>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>Protective Packaging &middot; UK &amp; Ireland &mdash; automated bagging ROI calculator. All calculations run locally in your browser; nothing is uploaded or stored.</p>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  var $ = function(id){ return document.getElementById(id); };
+
+  // ---------- formatters ----------
+  var gbp0 = new Intl.NumberFormat('en-GB', {style:'currency', currency:'GBP', maximumFractionDigits:0});
+  var gbpOrder = new Intl.NumberFormat('en-GB', {style:'currency', currency:'GBP', minimumFractionDigits:2, maximumFractionDigits:3});
+  var int0 = new Intl.NumberFormat('en-GB', {maximumFractionDigits:0});
+  function gbpCompact(v){
+    if (v >= 1e6) return '£' + (v/1e6).toFixed(v >= 1e7 ? 0 : 1) + 'm';
+    if (v >= 1e3) return '£' + Math.round(v/1e3) + 'k';
+    return '£' + Math.round(v);
+  }
+
+  // ---------- slider <-> number pairing ----------
+  function pair(sliderId, numId, displayId){
+    var s = $(sliderId), n = $(numId), d = displayId ? $(displayId) : null;
+    function fromSlider(){ n.value = s.value; sync(); }
+    function fromNumber(){
+      var v = parseFloat(n.value);
+      if (!isNaN(v)) s.value = Math.min(Math.max(v, +s.min), +s.max);
+      sync();
+    }
+    function sync(){
+      if (d) d.textContent = int0.format(parseFloat(n.value) || 0);
+      recalc();
+    }
+    s.addEventListener('input', fromSlider);
+    n.addEventListener('input', fromNumber);
+  }
+
+  function num(id, fallback){
+    var v = parseFloat($(id).value);
+    return (isNaN(v) || v < 0) ? fallback : v;
+  }
+
+  // ---------- core calculation ----------
+  function recalc(){
+    var orders   = num('n_orders', 0);
+    var days     = num('n_days', 0);
+    var manSec   = num('n_manSec', 0);
+    var rate     = num('n_rate', 0);
+    var manMat   = num('n_manMat', 0);
+    var autoSec  = num('n_autoSec', 0);
+    var autoMat  = num('n_autoMat', 0);
+    var machine  = num('n_machine', 0);
+    var service  = num('n_service', 0);
+
+    var annualOrders = orders * days;
+    var manPer  = (manSec/3600)*rate + manMat;
+    var autoPer = (autoSec/3600)*rate + autoMat;
+    var manAnnual  = manPer * annualOrders;
+    var autoAnnual = autoPer * annualOrders + service;
+    var saving = manAnnual - autoAnnual;
+    var hoursFreed = annualOrders * (manSec - autoSec) / 3600;
+    var threeYear = saving*3 - machine;
+    var positive = saving > 0;
+    var payback = positive ? machine / (saving/12) : null;
+
+    // hero / warning
+    $('heroCard').style.display = positive ? '' : 'none';
+    $('warnCard').style.display = positive ? 'none' : 'block';
+    if (positive){
+      var p = payback < 1 ? 'under 1'
+            : payback < 10 ? (Math.round(payback*10)/10).toString()
+            : Math.round(payback).toString();
+      $('heroValue').innerHTML = 'Machine pays for itself in <span class="num">' + p + '</span> month' + (p === '1' || p === 'under 1' ? '' : 's');
+    }
+
+    // stat cards
+    setStat('statSaving', gbp0.format(saving), saving < 0);
+    setStat('statHours', int0.format(Math.round(hoursFreed)) + ' hrs', hoursFreed < 0);
+    setStat('statThreeYr', gbp0.format(threeYear), threeYear < 0);
+
+    // cost-per-order bars
+    var maxPer = Math.max(manPer, autoPer, 0.0001);
+    $('barManVal').textContent  = gbpOrder.format(manPer);
+    $('barAutoVal').textContent = gbpOrder.format(autoPer);
+    $('barMan').style.width  = (manPer/maxPer*100).toFixed(1) + '%';
+    $('barAuto').style.width = (autoPer/maxPer*100).toFixed(1) + '%';
+
+    drawChart(manAnnual, autoAnnual, machine, positive ? payback : null);
+  }
+
+  function setStat(id, text, negative){
+    var el = $(id);
+    el.textContent = text;
+    el.classList.toggle('neg', !!negative);
+  }
+
+  // ---------- SVG chart ----------
+  var SVG_NS = 'http://www.w3.org/2000/svg';
+  function el(name, attrs, text){
+    var e = document.createElementNS(SVG_NS, name);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  function niceStep(rough){
+    var mag = Math.pow(10, Math.floor(Math.log10(rough)));
+    var r = rough / mag;
+    var f = r <= 1 ? 1 : r <= 2 ? 2 : r <= 2.5 ? 2.5 : r <= 5 ? 5 : 10;
+    return f * mag;
+  }
+
+  function drawChart(manAnnual, autoAnnual, machine, paybackMonths){
+    var svg = $('chart');
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+    var W = 660, H = 380;
+    var M = {l: 66, r: 18, t: 18, b: 42};
+    var iw = W - M.l - M.r, ih = H - M.t - M.b;
+    var months = 36;
+
+    var manEnd  = manAnnual * 3;
+    var autoEnd = machine + autoAnnual * 3;
+    var rawMax = Math.max(manEnd, autoEnd, 1);
+    var step = niceStep(rawMax / 5);
+    var yMax = Math.ceil(rawMax / step) * step;
+
+    var x = function(m){ return M.l + m/months * iw; };
+    var y = function(v){ return M.t + ih - (v/yMax) * ih; };
+
+    // gridlines + y labels
+    for (var v = 0; v <= yMax + step/2; v += step){
+      svg.appendChild(el('line', {x1:M.l, y1:y(v), x2:W-M.r, y2:y(v), stroke:'#DCE3E1', 'stroke-width':1}));
+      svg.appendChild(el('text', {x:M.l-10, y:y(v)+4, 'text-anchor':'end', 'font-size':11,
+        'font-family':"'IBM Plex Mono',monospace", fill:'#5A6A70'}, gbpCompact(v)));
+    }
+    // x labels
+    for (var m = 0; m <= months; m += 6){
+      svg.appendChild(el('text', {x:x(m), y:H-M.b+22, 'text-anchor':'middle', 'font-size':11,
+        'font-family':"'IBM Plex Mono',monospace", fill:'#5A6A70'}, m));
+    }
+    svg.appendChild(el('text', {x:M.l+iw/2, y:H-4, 'text-anchor':'middle', 'font-size':11,
+      'font-family':"'Inter',sans-serif", fill:'#5A6A70'}, 'Months'));
+    // axes
+    svg.appendChild(el('line', {x1:M.l, y1:M.t, x2:M.l, y2:M.t+ih, stroke:'#101C26', 'stroke-width':1.5}));
+    svg.appendChild(el('line', {x1:M.l, y1:M.t+ih, x2:W-M.r, y2:M.t+ih, stroke:'#101C26', 'stroke-width':1.5}));
+
+    // cost lines
+    function pts(startCost, annual){
+      var out = [];
+      for (var m = 0; m <= months; m++) out.push(x(m) + ',' + y(startCost + annual*m/12));
+      return out.join(' ');
+    }
+    svg.appendChild(el('polyline', {points: pts(0, manAnnual), fill:'none',
+      stroke:'#B98A3E', 'stroke-width':3, 'stroke-linecap':'round'}));
+    svg.appendChild(el('polyline', {points: pts(machine, autoAnnual), fill:'none',
+      stroke:'#0B7C8A', 'stroke-width':3, 'stroke-linecap':'round'}));
+
+    // break-even marker
+    if (paybackMonths != null && paybackMonths <= months){
+      var bx = x(paybackMonths);
+      var byv = manAnnual * paybackMonths / 12;
+      var by = y(byv);
+      svg.appendChild(el('line', {x1:bx, y1:by, x2:bx, y2:M.t+ih,
+        stroke:'#101C26', 'stroke-width':1.5, 'stroke-dasharray':'5 4'}));
+      svg.appendChild(el('circle', {cx:bx, cy:by, r:6, fill:'#101C26', stroke:'#fff', 'stroke-width':2}));
+      var label = 'Break-even · month ' + Math.round(paybackMonths);
+      var anchor = paybackMonths > months*0.6 ? 'end' : 'start';
+      var lx = anchor === 'end' ? bx - 12 : bx + 12;
+      svg.appendChild(el('text', {x:lx, y:Math.max(by-12, M.t+12), 'text-anchor':anchor,
+        'font-size':13, 'font-weight':600, 'font-family':"'Space Grotesk',sans-serif",
+        fill:'#101C26'}, label));
+    }
+  }
+
+  // ---------- wire up ----------
+  pair('s_orders', 'n_orders', 'v_orders');
+  pair('s_manSec', 'n_manSec', 'v_manSec');
+  pair('s_autoSec', 'n_autoSec', 'v_autoSec');
+  ['n_days','n_rate','n_manMat','n_autoMat','n_machine','n_service'].forEach(function(id){
+    $(id).addEventListener('input', recalc);
+  });
+  $('printBtn').addEventListener('click', function(){ window.print(); });
+
+  recalc();
+})();
+</script>
+</body>
+</html>
